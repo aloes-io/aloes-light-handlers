@@ -19,4 +19,4 @@ node_modules
 npm-debug.log
 dist
 /public/
-aloes-handlers-light.min.js
+aloes-light-handlers.min.js

@@ -23,7 +23,7 @@
   "files": [
     "dist/*",
     "package.json",
-    "aloes-handlers-light.min.js",
+    "aloes-light-handlers.min.js",
     "README.md"
   ],
   "author": "getlarge",
