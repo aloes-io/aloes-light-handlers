@@ -3,11 +3,9 @@ import {omaObjects, omaResources, omaViews} from 'oma-json';
 import {logger} from '../logger';
 import protocolRef from './common';
 
-/** @module aloesLightDecoder */
-
 /**
- * Find corresponding OMA object following a AloesLight presentation message
- * @static
+ * Find corresponding [OMA Object]{@link /aloeslight/#omaobjects} following a AloesLight presentation message
+ * @method aloesLightToOmaObject
  * @param {object} msg - Decoded MQTT packet.
  * @returns {object} composed instance
  */
@@ -42,9 +40,8 @@ const aloesLightToOmaObject = msg => {
 };
 
 /**
- * Find corresponding OMA resource to incoming AloesLight datas
- * @memberof AloesLight
- * @static
+ * Find corresponding [OMA Resources]{@link /aloeslight/#omaresources} to incoming AloesLight datas
+ * @method aloesLightToOmaResources
  * @param {object} msg - Decoded MQTT packet.
  * @returns {object} composed instance
  */
@@ -79,6 +76,7 @@ const aloesLightToOmaResources = msg => {
 /**
  * Convert incoming AloesLight data to Aloes Client
  * pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
+ * @method aloesLightDecoder
  * @param {object} packet - Incoming MQTT packet.
  * @param {object} protocol - Protocol paramters ( coming from patternDetector ).
  * @returns {object} composed instance
@@ -97,6 +95,9 @@ const aloesLightDecoder = (packet, protocol) => {
         ...protocol,
         prefixedDevEui: `${gatewayIdParts[0]}${inPrefix}`,
       };
+      // todo get transportProtocol from packet
+      decoded.transportProtocol = 'aloesLight';
+      decoded.messageProtocol = 'aloesLight';
       decoded.inPrefix = inPrefix;
       decoded.outPrefix = outPrefix;
       decoded.devEui = gatewayIdParts[0];

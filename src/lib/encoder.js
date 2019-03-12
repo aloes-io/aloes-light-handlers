@@ -2,15 +2,13 @@ import mqttPattern from 'mqtt-pattern';
 import {logger} from '../logger';
 import protocolRef from './common';
 
-/** @module aloesLightEncoder */
-
 /**
  * Convert incoming Aloes Client data to AloesLight protocol
  * pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
+ * @method aloesLightEncoder
  * @param {object} packet - Sensor instance.
  * @param {object} protocol - Protocol paramters ( coming from patternDetector ).
  */
-
 const aloesLightEncoder = (instance, protocol) => {
   try {
     if (

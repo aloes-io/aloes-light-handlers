@@ -3,8 +3,6 @@ import {omaObjects} from 'oma-json';
 import {logger} from '../logger';
 import protocolRef from './common';
 
-/** @module aloesLightPatternDetector */
-
 /**
  * Extract protocol paramters from incoming topic.
  *
@@ -24,10 +22,10 @@ import protocolRef from './common';
 /**
  * Check incoming MQTT packet against AloesLight API
  * pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
+ * @method aloesLightPatternDetector
  * @param {object} packet - The MQTT packet.
  * @returns {object} found pattern.name and pattern.params
  */
-
 const aloesLightPatternDetector = packet => {
   try {
     const pattern = {name: 'empty', params: {}};
