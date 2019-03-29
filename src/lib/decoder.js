@@ -11,18 +11,17 @@ import protocolRef from './common';
  */
 const aloesLightToOmaObject = msg => {
   try {
-    logger(4, 'handlers', 'aloesLightToOmaObject:req', msg);
+    logger(4, 'aloes-light-handlers', 'toOmaObject:req', msg);
     if (!msg || msg == null || !msg.type || msg.type === null) {
-      return 'Wrong instance input';
+      throw new Error('Wrong instance input');
     }
     const foundOmaObject = omaObjects.find(
       object => object.value === Number(msg.type),
     );
-    if (!foundOmaObject) return 'no OMA Object found';
+    if (!foundOmaObject) throw new Error('no OMA Object found');
     const foundOmaViews = omaViews.find(
       view => view.value === Number(msg.type),
     );
-
     const decoded = {
       ...msg,
       resources: foundOmaObject.resources,
@@ -31,10 +30,10 @@ const aloesLightToOmaObject = msg => {
       colors: foundOmaViews.resources,
       frameCounter: 0,
     };
-    logger(4, 'handlers', 'aloesLightToOmaObject:res', decoded);
+    logger(4, 'aloes-light-handlers', 'toOmaObject:res', decoded);
     return decoded;
   } catch (error) {
-    logger(2, 'handlers', 'aloesLightToOmaObject:err', error);
+    logger(2, 'aloes-light-handlers', 'toOmaObject:err', error);
     throw error;
   }
 };
@@ -47,7 +46,7 @@ const aloesLightToOmaObject = msg => {
  */
 const aloesLightToOmaResources = msg => {
   try {
-    logger(4, 'handlers', 'aloesLightToOmaResources:req', msg);
+    logger(4, 'aloes-light-handlers', 'toOmaResources:req', msg);
     if (
       !msg ||
       msg === null ||
@@ -55,20 +54,19 @@ const aloesLightToOmaResources = msg => {
       msg.type === null ||
       !msg.resource
     ) {
-      return 'Wrong instance input';
+      throw new Error('Wrong instance input');
     }
     const aloesResource = omaResources.find(
       resource => resource.value === Number(msg.resource),
     );
-    if (!aloesResource) return 'no OMA Object found';
+    if (!aloesResource) throw new Error('no OMA Object found');
     const decoded = {
       ...msg,
     };
-    //  sensor.resources = aloesResource.resources;
-    logger(4, 'handlers', 'aloesLightToOmaResources:res', decoded);
+    logger(4, 'aloes-light-handlers', 'toOmaResources:res', decoded);
     return decoded;
   } catch (error) {
-    logger(2, 'handlers', 'aloesLightToOmaResources:err', error);
+    logger(2, 'aloes-light-handlers', 'toOmaResources:err', error);
     throw error;
   }
 };
@@ -83,7 +81,7 @@ const aloesLightToOmaResources = msg => {
  */
 const aloesLightDecoder = (packet, protocol) => {
   try {
-    logger(4, 'handlers', 'aloesLightDecoder:req', protocol);
+    logger(4, 'aloes-light-handlers', 'decoder:req', protocol);
     const protocolKeys = Object.getOwnPropertyNames(protocol);
     if (protocolKeys.length === 5) {
       const decoded = {};
@@ -157,12 +155,13 @@ const aloesLightDecoder = (packet, protocol) => {
         default:
           break;
       }
+      logger(3, 'aloes-light-handlers', 'decoder:res', decodedPayload);
       return decodedPayload;
     }
-    return "topic doesn't match";
+    throw new Error("Topic doesn't match");
   } catch (error) {
-    logger(2, 'handlers', 'aloesLightDecoder:err', error);
-    throw error;
+    logger(2, 'aloes-light-handlers', 'decoder:err', error);
+    return error;
   }
 };
 

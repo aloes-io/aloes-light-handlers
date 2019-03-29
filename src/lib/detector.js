@@ -30,16 +30,16 @@ const aloesLightPatternDetector = packet => {
   try {
     const pattern = {name: 'empty', params: {}};
     if (mqttPattern.matches(protocolRef.pattern, packet.topic)) {
-      logger(2, 'handlers', 'aloesLightPatternDetector:res', 'reading API ...');
+      logger(4, 'aloes-light-handlers', 'patternDetector:res', 'reading API ...');
       //  const aloesProtocol = await extractProtocol(protocolRef.pattern, packet.topic);
       const aloesLightProtocol = mqttPattern.exec(
         protocolRef.pattern,
         packet.topic,
       );
       logger(
-        4,
-        'handlers',
-        'aloesLightPatternDetector:res',
+        3,
+        'aloes-light-handlers',
+        'patternDetector:res',
         aloesLightProtocol,
       );
       const methodExists = protocolRef.validators.methods.some(
@@ -48,7 +48,7 @@ const aloesLightPatternDetector = packet => {
       const omaObjectIdExists = omaObjects.some(
         object => object.value === Number(aloesLightProtocol.omaObjectId),
       );
-      logger(4, 'handlers', 'aloesLightPatternDetector:res', {
+      logger(4, 'aloes-light-handlers', 'patternDetector:res', {
         methodExists,
         omaObjectIdExists,
       });
@@ -57,6 +57,7 @@ const aloesLightPatternDetector = packet => {
         pattern.params = aloesLightProtocol;
         return pattern;
       }
+      return pattern
     }
     return pattern;
   } catch (error) {
@@ -64,7 +65,7 @@ const aloesLightPatternDetector = packet => {
     if (!err) {
       err = new Error('Error: invalid packet');
     }
-    logger(2, 'handlers', 'cayennePatternDetector:err', err);
+    logger(2, 'aloes-light-handlers', 'patternDetector:err', err);
     return err;
   }
 };

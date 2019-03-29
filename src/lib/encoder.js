@@ -23,7 +23,7 @@ const aloesLightEncoder = (instance, protocol) => {
         sensorId: instance.nativeSensorId,
         omaResourceId: instance.resource,
       };
-      logger(4, 'handlers', 'aloesLightEncoder:req', params);
+      logger(4, 'aloes-light-handlers', 'encoder:req', params);
       if (protocol.method === 'HEAD') {
         params.method = 0;
         topic = mqttPattern.fill(protocolRef.pattern, params);
@@ -34,13 +34,13 @@ const aloesLightEncoder = (instance, protocol) => {
         params.method = 2;
         topic = mqttPattern.fill(protocolRef.pattern, params);
       }
-      if (!topic || topic === null) return 'Method not supported yet';
-      logger(4, 'handlers', 'aloesLightEncoder:res', topic);
+      if (!topic || topic === null) throw new Error('Method not supported');
+      logger(4, 'aloes-light-handlers', 'encoder:res', topic);
       return {topic, payload: instance.value};
     }
-    return new Error('Error: Wrong protocol input');
+    throw new Error('Wrong protocol input');
   } catch (error) {
-    logger(4, 'handlers', 'aloesLightEncoder:err', error);
+    logger(4, 'aloes-light-handlers', 'encoder:err', error);
     return error;
   }
 };

@@ -6,9 +6,9 @@
   "unpkg": "aloes-light-handlers.min.js",
   "scripts": {
     "lint": "npx eslint --ext js .",
-    "test:aloes-light-detector": "mocha --require @babel/register './src/test/detector.spec.js'",
-    "test:aloes-light-decoder": "mocha --require @babel/register './src/test/decoder.spec.js'",
-    "test:aloes-light-encoder": "mocha --require @babel/register './src/test/encoder.spec.js'",
+    "test:aloes-light-detector": "export NODE_ENV=test; mocha --require @babel/register './src/test/detector.spec.js'",
+    "test:aloes-light-decoder": "export NODE_ENV=test; mocha --require @babel/register './src/test/decoder.spec.js'",
+    "test:aloes-light-encoder": "export NODE_ENV=test; mocha --require @babel/register './src/test/encoder.spec.js'",
     "test:aloes-light": "npm run test:aloes-light-detector; npm run test:aloes-light-decoder; npm run test:aloes-light-encoder",
     "test": "npm run test:aloes-light",
     "docs:aloeslight": "jsdoc2md ./src/lib/* > ./docs/aloeslight/README.md",
