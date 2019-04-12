@@ -38,6 +38,7 @@
     "npm": ">=6.0.0"
   },
   "dependencies": {
+    "aloes-logger": "^1.0.4",
     "mqtt-pattern": "^1.2.0",
     "oma-json": "^1.0.6"
   },
@@ -57,7 +58,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "acorn": "^6.1.0",
-    "aloes-handlers": "^1.1.7",
+    "aloes-handlers": "^1.2.1",
     "babel-eslint": "^8.2.6",
     "babel-preset-minify": "^0.5.0",
     "chai": "^4.2.0",
@@ -73,7 +74,7 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.18.8",
     "prettier": "1.16.1",
-    "vuepress": "^1.0.0-alpha.42"
+    "vuepress": "^1.0.0-alpha.47"
   },
   "peerDependencies": {
     "mqtt-pattern": "^1.2.0",
