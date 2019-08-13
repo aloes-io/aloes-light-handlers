@@ -21,7 +21,6 @@ import protocolRef from './common';
 
 /**
  * Check incoming MQTT packet against AloesLight API
- * pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
  * @method aloesLightPatternDetector
  * @param {object} packet - The MQTT packet.
  * @returns {object} found pattern.name and pattern.params

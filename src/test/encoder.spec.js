@@ -10,7 +10,7 @@ import {aloesLightPatternDetector} from '../lib/detector';
 //  const aloesLightPattern = "+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId";
 
 describe('aloesLightEncoder - test 1', () => {
-  const packet = {topic: 'Aloes123-in/0/3349/3/5910', payload: 'test'};
+  const packet = {topic: 'Aloes123-in/0/3349/0/3/5910', payload: 'test'};
   const pattern = aloesLightPatternDetector(packet);
   const options = {
     pattern: pattern.name,
@@ -22,6 +22,7 @@ describe('aloesLightEncoder - test 1', () => {
       type: Number(pattern.params.omaObjectId),
       resources: {'5700': null, '5750': 'awesome'},
       nativeSensorId: pattern.params.sensorId,
+      nativeNodeId: pattern.params.nodeId,
       resource: pattern.params.omaResourceId,
       inputPath: `${pattern.params.prefixedDevEui.split('-')[0]}-in/${
         pattern.params.method
@@ -71,7 +72,7 @@ describe('aloesLightEncoder - test 1', () => {
 });
 
 describe('aloesLightEncoder - test 2', () => {
-  const packet = {topic: 'Aloes123-in/0/3300/4/5700', payload: 'test'};
+  const packet = {topic: 'Aloes123-in/0/3300/1/4/5700', payload: 'test'};
   const pattern = aloesLightPatternDetector(packet);
   const options = {
     pattern: pattern.name,
@@ -83,6 +84,7 @@ describe('aloesLightEncoder - test 2', () => {
       type: Number(pattern.params.omaObjectId),
       resources: {'5700': null, '5750': 'awesome'},
       nativeSensorId: pattern.params.sensorId,
+      nativeNodeId: pattern.params.nodeId,
       resource: pattern.params.omaResourceId,
       inputPath: `${pattern.params.prefixedDevEui.split('-')[0]}-in/${
         pattern.params.method
@@ -131,7 +133,7 @@ describe('aloesLightEncoder - test 2', () => {
 });
 
 describe('aloesLightEncoder - test 3', () => {
-  const packet = {topic: 'Aloes123-in/1/3349/3/5910', payload: 'test'};
+  const packet = {topic: 'Aloes123-in/1/3349/0/3/5910', payload: 'test'};
   const pattern = aloesLightPatternDetector(packet);
   const options = {
     pattern: pattern.name,
@@ -143,6 +145,7 @@ describe('aloesLightEncoder - test 3', () => {
       type: Number(pattern.params.omaObjectId),
       resources: {'5910': null, '5911': 0},
       nativeSensorId: pattern.params.sensorId,
+      nativeNodeId: pattern.params.nodeId,
       resource: pattern.params.omaResourceId,
       inputPath: `${pattern.params.prefixedDevEui.split('-')[0]}-in/${
         pattern.params.method
@@ -193,7 +196,7 @@ describe('aloesLightEncoder - test 3', () => {
 
 describe('aloesLightEncoder - test 4', () => {
   const packet = {
-    topic: 'Aloes123-in/1/3349/4/5910',
+    topic: 'Aloes123-in/1/3349/1/4/5910',
     payload: Buffer.from('looognognogonbbuffferrr'),
   };
   const pattern = aloesLightPatternDetector(packet);
@@ -206,6 +209,7 @@ describe('aloesLightEncoder - test 4', () => {
       messageProtocol: 'aloesLight',
       type: Number(pattern.params.omaObjectId),
       nativeSensorId: pattern.params.sensorId,
+      nativeNodeId: pattern.params.nodeId,
       resource: pattern.params.omaResourceId,
       resources: {'5910': null, '5911': 0},
       inputPath: `${pattern.params.prefixedDevEui.split('-')[0]}-in/${

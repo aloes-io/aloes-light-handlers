@@ -60,9 +60,12 @@ const aloesLightToOmaResources = msg => {
       resource => resource.value === Number(msg.resource),
     );
     if (!aloesResource) throw new Error('no OMA Object found');
+
     const decoded = {
       ...msg,
     };
+    // todo adapt decoded.value base on recieved packet.payload type
+    // if (msg.resource !== 5910) decoded.value = msg.value.toString();
     logger(4, 'aloes-light-handlers', 'toOmaResources:res', decoded);
     return decoded;
   } catch (error) {
@@ -83,7 +86,7 @@ const aloesLightDecoder = (packet, protocol) => {
   try {
     logger(4, 'aloes-light-handlers', 'decoder:req', protocol);
     const protocolKeys = Object.getOwnPropertyNames(protocol);
-    if (protocolKeys.length === 5) {
+    if (protocolKeys.length === 6) {
       const decoded = {};
       let decodedPayload;
       const gatewayIdParts = protocol.prefixedDevEui.split('-');
@@ -101,15 +104,17 @@ const aloesLightDecoder = (packet, protocol) => {
       decoded.devEui = gatewayIdParts[0];
       decoded.prefix = gatewayIdParts[1];
       decoded.lastSignal = new Date();
+      decoded.direction = 'RX';
 
       switch (Number(protocol.method)) {
         case 0: // HEAD
           decoded.nativeSensorId = protocol.sensorId;
+          decoded.nativeNodeId = protocol.nodeId;
           decoded.type = Number(protocol.omaObjectId);
           decoded.nativeType = Number(protocol.omaObjectId);
           decoded.resource = Number(protocol.omaResourceId);
           decoded.nativeResource = Number(protocol.omaResourceId);
-          decoded.value = packet.payload;
+          decoded.value = packet.payload.toString();
           decoded.inputPath = mqttPattern.fill(protocolRef.pattern, params);
           params.prefixedDevEui = `${gatewayIdParts[0]}${outPrefix}`;
           decoded.outputPath = mqttPattern.fill(protocolRef.pattern, params);
@@ -121,16 +126,18 @@ const aloesLightDecoder = (packet, protocol) => {
           params.prefixedDevEui = `${gatewayIdParts[0]}${outPrefix}`;
           decoded.outputPath = mqttPattern.fill(protocolRef.pattern, params);
           decoded.nativeSensorId = protocol.sensorId;
+          decoded.nativeNodeId = protocol.nodeId;
           decoded.type = Number(protocol.omaObjectId);
           decoded.nativeType = Number(protocol.omaObjectId);
           decoded.resource = Number(protocol.omaResourceId);
           decoded.nativeResource = Number(protocol.omaResourceId);
-          decoded.value = packet.payload;
+          decoded.value = packet.payload.toString();
           decoded.method = 'POST';
           decodedPayload = aloesLightToOmaResources(decoded);
           break;
         case 2: // GET
           decoded.nativeSensorId = protocol.sensorId;
+          decoded.nativeNodeId = protocol.nodeId;
           decoded.type = Number(protocol.omaObjectId);
           decoded.resource = Number(protocol.omaResourceId);
           decoded.nativeResource = Number(protocol.omaResourceId);
@@ -139,10 +146,12 @@ const aloesLightDecoder = (packet, protocol) => {
           break;
         case 3: // Internal
           decoded.nativeSensorId = protocol.sensorId;
+          decoded.nativeNodeId = protocol.nodeId;
           decoded.value = packet.payload.toString();
           break;
         case 4: // STREAM
           decoded.nativeSensorId = protocol.sensorId;
+          decoded.nativeNodeId = protocol.nodeId;
           decoded.type = Number(protocol.omaObjectId);
           decoded.nativeType = Number(protocol.omaObjectId);
           decoded.resource = Number(protocol.omaResourceId);

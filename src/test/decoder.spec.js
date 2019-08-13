@@ -7,7 +7,7 @@ import {aloesLightPatternDetector} from '../lib/detector';
 //  const aloesLightPattern = "+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId";
 
 describe('aloesLightDecoder - test 1', () => {
-  const packet = {topic: 'Aloes123-out/0/3349/3/5910', payload: 'test'};
+  const packet = {topic: 'Aloes123-out/0/3349/0/3/5910', payload: 'test'};
   const pattern = aloesLightPatternDetector(packet);
   const params = pattern.params;
   const decoded = aloesLightDecoder(packet, params);
@@ -18,6 +18,7 @@ describe('aloesLightDecoder - test 1', () => {
     'transportProtocol',
     'messageProtocol',
     'nativeSensorId',
+    'nativeNodeId',
     'nativeType',
     'resource',
     'nativeResource',
@@ -33,6 +34,7 @@ describe('aloesLightDecoder - test 1', () => {
     'lastSignal',
     'method',
     'prefix',
+    'direction',
   ];
 
   it('pattern should exist', () => {
@@ -65,7 +67,7 @@ describe('aloesLightDecoder - test 1', () => {
 });
 
 describe('aloesLightDecoder - test 2', () => {
-  const packet = {topic: 'Aloes123-out/0/3300/4/5700', payload: 'test'};
+  const packet = {topic: 'Aloes123-out/0/3300/1/4/5700', payload: 'test'};
   const pattern = aloesLightPatternDetector(packet);
   const params = pattern.params;
   const decoded = aloesLightDecoder(packet, params);
@@ -76,6 +78,7 @@ describe('aloesLightDecoder - test 2', () => {
     'transportProtocol',
     'messageProtocol',
     'nativeSensorId',
+    'nativeNodeId',
     'nativeType',
     'resource',
     'nativeResource',
@@ -91,6 +94,7 @@ describe('aloesLightDecoder - test 2', () => {
     'lastSignal',
     'method',
     'prefix',
+    'direction',
   ];
 
   it('pattern should exist', () => {
@@ -123,7 +127,7 @@ describe('aloesLightDecoder - test 2', () => {
 });
 
 describe('aloesLightDecoder - test 3', () => {
-  const packet = {topic: 'Aloes123-out/1/3349/3/5910', payload: 'test'};
+  const packet = {topic: 'Aloes123-out/1/3349/0/3/5910', payload: 'test'};
   const pattern = aloesLightPatternDetector(packet);
   const params = pattern.params;
   const decoded = aloesLightDecoder(packet, params);
@@ -133,6 +137,7 @@ describe('aloesLightDecoder - test 3', () => {
     'transportProtocol',
     'messageProtocol',
     'nativeSensorId',
+    'nativeNodeId',
     'nativeType',
     'resource',
     'nativeResource',
@@ -144,6 +149,7 @@ describe('aloesLightDecoder - test 3', () => {
     'lastSignal',
     'method',
     'prefix',
+    'direction',
   ];
 
   it('pattern should exist', () => {
@@ -177,7 +183,7 @@ describe('aloesLightDecoder - test 3', () => {
 
 describe('aloesLightDecoder - test 4', () => {
   const packet = {
-    topic: 'Aloes123-out/1/3349/4/5910',
+    topic: 'Aloes123-out/1/3349/0/4/5910',
     payload: Buffer.from('looognognogonbbuffferrr'),
   };
   const pattern = aloesLightPatternDetector(packet);
@@ -189,6 +195,7 @@ describe('aloesLightDecoder - test 4', () => {
     'transportProtocol',
     'messageProtocol',
     'nativeSensorId',
+    'nativeNodeId',
     'nativeType',
     'resource',
     'nativeResource',
@@ -200,6 +207,7 @@ describe('aloesLightDecoder - test 4', () => {
     'lastSignal',
     'method',
     'prefix',
+    'direction',
   ];
 
   it('pattern should exist', () => {
@@ -222,8 +230,8 @@ describe('aloesLightDecoder - test 4', () => {
     assert.hasAllKeys(decoded, keys);
   });
 
-  it(`decoded payload should be ${packet.payload}`, () => {
-    assert.strictEqual(packet.payload, decoded.value);
+  it(`decoded payload should be ${packet.payload.toString()}`, () => {
+    assert.strictEqual(packet.payload.toString(), decoded.value);
   });
 
   it(`decoded topic should be ${packet.topic}`, () => {

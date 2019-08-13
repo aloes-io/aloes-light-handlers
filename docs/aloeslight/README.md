@@ -23,12 +23,10 @@ pattern - &#39;+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId&#39
 <dd><p>Extract protocol paramters from incoming topic.</p>
 </dd>
 <dt><a href="#aloesLightPatternDetector">aloesLightPatternDetector(packet)</a> ⇒ <code>object</code></dt>
-<dd><p>Check incoming MQTT packet against AloesLight API
-pattern - &#39;+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId&#39;</p>
+<dd><p>Check incoming MQTT packet against AloesLight API</p>
 </dd>
 <dt><a href="#aloesLightEncoder">aloesLightEncoder(packet, protocol)</a></dt>
-<dd><p>Convert incoming Aloes Client data to AloesLight protocol
-pattern - &#39;+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId&#39;</p>
+<dd><p>Convert incoming Aloes Client data to AloesLight protocol</p>
 </dd>
 </dl>
 
@@ -114,7 +112,6 @@ Extract protocol paramters from incoming topic.
 
 ## aloesLightPatternDetector(packet) ⇒ <code>object</code>
 Check incoming MQTT packet against AloesLight API
-pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
 
 **Kind**: global function  
 **Returns**: <code>object</code> - found pattern.name and pattern.params  
@@ -127,7 +124,6 @@ pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
 
 ## aloesLightEncoder(packet, protocol)
 Convert incoming Aloes Client data to AloesLight protocol
-pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
 
 **Kind**: global function  
 

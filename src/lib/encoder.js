@@ -4,7 +4,6 @@ import protocolRef from './common';
 
 /**
  * Convert incoming Aloes Client data to AloesLight protocol
- * pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
  * @method aloesLightEncoder
  * @param {object} packet - Sensor instance.
  * @param {object} protocol - Protocol paramters ( coming from patternDetector ).
@@ -21,6 +20,7 @@ const aloesLightEncoder = (instance, protocol) => {
         prefixedDevEui: `${instance.devEui}${instance.inPrefix}`,
         omaObjectId: instance.type,
         sensorId: instance.nativeSensorId,
+        nodeId: instance.nativeNodeId,
         omaResourceId: instance.resource,
       };
       logger(4, 'aloes-light-handlers', 'encoder:req', params);
