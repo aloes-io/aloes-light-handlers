@@ -131,7 +131,12 @@ const aloesLightDecoder = (packet, protocol) => {
           decoded.nativeType = Number(protocol.omaObjectId);
           decoded.resource = Number(protocol.omaResourceId);
           decoded.nativeResource = Number(protocol.omaResourceId);
-          decoded.value = packet.payload.toString();
+          if (decoded.resource === 5910 || decoded.resource === 5522) {
+            decoded.value = packet.payload;
+            // decoded.value = packet.payload.toString('binary');
+          } else {
+            decoded.value = packet.payload.toString();
+          }
           decoded.method = 'POST';
           decodedPayload = aloesLightToOmaResources(decoded);
           break;

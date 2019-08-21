@@ -231,7 +231,7 @@ describe('aloesLightDecoder - test 4', () => {
   });
 
   it(`decoded payload should be ${packet.payload.toString()}`, () => {
-    assert.strictEqual(packet.payload.toString(), decoded.value);
+    assert.strictEqual(packet.payload.toString(), decoded.value.toString());
   });
 
   it(`decoded topic should be ${packet.topic}`, () => {
