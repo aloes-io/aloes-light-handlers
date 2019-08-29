@@ -138,11 +138,11 @@ Convert incoming Aloes Client data to AloesLight protocol
 Oma Object References.
 
 **Kind**: global external  
-**See**: [https://api.aloes.io/api/omaObjects](https://api.aloes.io/api/omaObjects)  
+**See**: [https://supervisor.aloes.io/api/omaObjects](https://supervisor.aloes.io/api/omaObjects)  
 <a name="external_OmaResources"></a>
 
 ## OmaResources
 Oma Resources References.
 
 **Kind**: global external  
-**See**: [https://api.aloes.io/api/omaResources](https://api.aloes.io/api/omaResources)  
+**See**: [https://supervisor.aloes.io/api/omaResources](https://supervisor.aloes.io/api/omaResources)  
