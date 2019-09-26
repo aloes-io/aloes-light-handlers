@@ -19,9 +19,6 @@
 <dd><p>Convert incoming AloesLight data to Aloes Client
 pattern - &#39;+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId&#39;</p>
 </dd>
-<dt><a href="#extractProtocol">extractProtocol(pattern, topic)</a> ⇒ <code>Promise.&lt;object&gt;</code></dt>
-<dd><p>Extract protocol paramters from incoming topic.</p>
-</dd>
 <dt><a href="#aloesLightPatternDetector">aloesLightPatternDetector(packet)</a> ⇒ <code>object</code></dt>
 <dd><p>Check incoming MQTT packet against AloesLight API</p>
 </dd>
@@ -95,19 +92,6 @@ pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
 | packet | <code>object</code> | Incoming MQTT packet. |
 | protocol | <code>object</code> | Protocol paramters ( coming from patternDetector ). |
 
-<a name="extractProtocol"></a>
-
-## extractProtocol(pattern, topic) ⇒ <code>Promise.&lt;object&gt;</code>
-Extract protocol paramters from incoming topic.
-
-**Kind**: global function  
-**Returns**: <code>Promise.&lt;object&gt;</code> - Extracted paramters.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pattern | <code>string</code> | Name of the protocol pattern. |
-| topic | <code>string</code> | MQTT topic. |
-
 <a name="aloesLightPatternDetector"></a>
 
 ## aloesLightPatternDetector(packet) ⇒ <code>object</code>
@@ -138,11 +122,11 @@ Convert incoming Aloes Client data to AloesLight protocol
 Oma Object References.
 
 **Kind**: global external  
-**See**: [https://supervisor.aloes.io/api/omaObjects](https://supervisor.aloes.io/api/omaObjects)  
+**See**: [https://aloes.io/app/api/omaObjects](https://aloes.io/app/api/omaObjects)  
 <a name="external_OmaResources"></a>
 
 ## OmaResources
 Oma Resources References.
 
 **Kind**: global external  
-**See**: [https://supervisor.aloes.io/api/omaResources](https://supervisor.aloes.io/api/omaResources)  
+**See**: [https://aloes.io/app/api/omaResources](https://aloes.io/app/api/omaResources)  

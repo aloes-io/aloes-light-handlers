@@ -41,7 +41,7 @@ const aloesLightEncoder = (instance, protocol) => {
     throw new Error('Wrong protocol input');
   } catch (error) {
     logger(4, 'aloes-light-handlers', 'encoder:err', error);
-    return error;
+    throw error;
   }
 };
 

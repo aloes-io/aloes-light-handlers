@@ -175,7 +175,7 @@ const aloesLightDecoder = (packet, protocol) => {
     throw new Error("Topic doesn't match");
   } catch (error) {
     logger(2, 'aloes-light-handlers', 'decoder:err', error);
-    return error;
+    throw error;
   }
 };
 
