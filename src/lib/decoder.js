@@ -76,7 +76,9 @@ const aloesLightToOmaResources = msg => {
 
 /**
  * Convert incoming AloesLight data to Aloes Client
- * pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
+ *
+ * pattern : '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
+ *
  * @method aloesLightDecoder
  * @param {object} packet - Incoming MQTT packet.
  * @param {object} protocol - Protocol paramters ( coming from patternDetector ).
@@ -149,10 +151,15 @@ const aloesLightDecoder = (packet, protocol) => {
           decoded.method = 'GET';
           decodedPayload = decoded;
           break;
-        case 3: // Internal
+        case 3: // DELETE
+          decoded.value = packet.payload.toString();
           decoded.nativeSensorId = protocol.sensorId;
           decoded.nativeNodeId = protocol.nodeId;
-          decoded.value = packet.payload.toString();
+          decoded.type = Number(protocol.omaObjectId);
+          decoded.resource = Number(protocol.omaResourceId);
+          decoded.nativeResource = Number(protocol.omaResourceId);
+          decoded.method = 'DELETE';
+          decodedPayload = decoded;
           break;
         case 4: // STREAM
           decoded.nativeSensorId = protocol.sensorId;

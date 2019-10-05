@@ -13,7 +13,12 @@ const aloesLightPatternDetector = packet => {
   try {
     const pattern = {name: 'empty', params: {}};
     if (mqttPattern.matches(protocolRef.pattern, packet.topic)) {
-      logger(4, 'aloes-light-handlers', 'patternDetector:res', 'reading API ...');
+      logger(
+        4,
+        'aloes-light-handlers',
+        'patternDetector:res',
+        'reading API ...',
+      );
       const aloesLightProtocol = mqttPattern.exec(
         protocolRef.pattern,
         packet.topic,
@@ -39,16 +44,12 @@ const aloesLightPatternDetector = packet => {
         pattern.params = aloesLightProtocol;
         return pattern;
       }
-      return pattern
+      return pattern;
     }
     return pattern;
   } catch (error) {
-    let err = error;
-    if (!err) {
-      err = new Error('Error: invalid packet');
-    }
-    logger(2, 'aloes-light-handlers', 'patternDetector:err', err);
-    throw err;
+    logger(2, 'aloes-light-handlers', 'patternDetector:err', error);
+    throw error;
   }
 };
 

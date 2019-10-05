@@ -16,8 +16,8 @@
 <dd><p>Find corresponding <a href="/aloeslight/#omaresources">OMA Resources</a> to incoming AloesLight datas</p>
 </dd>
 <dt><a href="#aloesLightDecoder">aloesLightDecoder(packet, protocol)</a> ⇒ <code>object</code></dt>
-<dd><p>Convert incoming AloesLight data to Aloes Client
-pattern - &#39;+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId&#39;</p>
+<dd><p>Convert incoming AloesLight data to Aloes Client</p>
+<p>pattern : &#39;+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId&#39;</p>
 </dd>
 <dt><a href="#aloesLightPatternDetector">aloesLightPatternDetector(packet)</a> ⇒ <code>object</code></dt>
 <dd><p>Check incoming MQTT packet against AloesLight API</p>
@@ -82,7 +82,8 @@ Find corresponding [OMA Resources](/aloeslight/#omaresources) to incoming AloesL
 
 ## aloesLightDecoder(packet, protocol) ⇒ <code>object</code>
 Convert incoming AloesLight data to Aloes Client
-pattern - '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
+
+pattern : '+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId'
 
 **Kind**: global function  
 **Returns**: <code>object</code> - composed instance  
