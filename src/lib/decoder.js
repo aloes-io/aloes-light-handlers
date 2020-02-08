@@ -1,7 +1,7 @@
-import mqttPattern from 'mqtt-pattern';
-import {omaObjects, omaResources, omaViews} from 'oma-json';
-import logger from 'aloes-logger';
-import protocolRef from './common';
+const mqttPattern = require('mqtt-pattern');
+const {omaObjects, omaResources, omaViews} = require('oma-json');
+const logger = require('aloes-logger');
+const protocolRef = require('./common');
 
 /**
  * Find corresponding [OMA Object]{@link /aloeslight/#omaobjects} following a AloesLight presentation message
@@ -9,19 +9,15 @@ import protocolRef from './common';
  * @param {object} msg - Decoded MQTT packet.
  * @returns {object} composed instance
  */
-const aloesLightToOmaObject = msg => {
+const aloesLightToOmaObject = (msg) => {
   try {
     logger(4, 'aloes-light-handlers', 'toOmaObject:req', msg);
     if (!msg || msg == null || !msg.type || msg.type === null) {
       throw new Error('Wrong instance input');
     }
-    const foundOmaObject = omaObjects.find(
-      object => object.value === Number(msg.type),
-    );
+    const foundOmaObject = omaObjects.find((object) => object.value === Number(msg.type));
     if (!foundOmaObject) throw new Error('no OMA Object found');
-    const foundOmaViews = omaViews.find(
-      view => view.value === Number(msg.type),
-    );
+    const foundOmaViews = omaViews.find((view) => view.value === Number(msg.type));
     const decoded = {
       ...msg,
       resources: foundOmaObject.resources,
@@ -34,7 +30,7 @@ const aloesLightToOmaObject = msg => {
     return decoded;
   } catch (error) {
     logger(2, 'aloes-light-handlers', 'toOmaObject:err', error);
-    throw error;
+    return null;
   }
 };
 
@@ -44,21 +40,13 @@ const aloesLightToOmaObject = msg => {
  * @param {object} msg - Decoded MQTT packet.
  * @returns {object} composed instance
  */
-const aloesLightToOmaResources = msg => {
+const aloesLightToOmaResources = (msg) => {
   try {
     logger(4, 'aloes-light-handlers', 'toOmaResources:req', msg);
-    if (
-      !msg ||
-      msg === null ||
-      !msg.type ||
-      msg.type === null ||
-      !msg.resource
-    ) {
+    if (!msg || msg === null || !msg.type || msg.type === null || !msg.resource) {
       throw new Error('Wrong instance input');
     }
-    const aloesResource = omaResources.find(
-      resource => resource.value === Number(msg.resource),
-    );
+    const aloesResource = omaResources.find((resource) => resource.value === Number(msg.resource));
     if (!aloesResource) throw new Error('no OMA Object found');
 
     const decoded = {
@@ -70,7 +58,7 @@ const aloesLightToOmaResources = msg => {
     return decoded;
   } catch (error) {
     logger(2, 'aloes-light-handlers', 'toOmaResources:err', error);
-    throw error;
+    return null;
   }
 };
 
@@ -182,7 +170,7 @@ const aloesLightDecoder = (packet, protocol) => {
     throw new Error("Topic doesn't match");
   } catch (error) {
     logger(2, 'aloes-light-handlers', 'decoder:err', error);
-    throw error;
+    return null;
   }
 };
 

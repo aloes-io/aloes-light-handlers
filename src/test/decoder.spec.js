@@ -1,8 +1,6 @@
-require('@babel/register');
-
-import {assert} from 'chai';
-import {aloesLightDecoder} from '../lib/decoder';
-import {aloesLightPatternDetector} from '../lib/detector';
+const {assert} = require('chai');
+const {aloesLightDecoder} = require('../lib/decoder');
+const {aloesLightPatternDetector} = require('../lib/detector');
 
 //  const aloesLightPattern = "+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId";
 

@@ -1,11 +1,9 @@
-require('@babel/register');
-
-import {assert} from 'chai';
-import fs from 'fs';
-import path from 'path';
-import {updateAloesSensors} from 'aloes-handlers';
-import {aloesLightEncoder} from '../lib/encoder';
-import {aloesLightPatternDetector} from '../lib/detector';
+const {assert} = require('chai');
+const fs = require('fs');
+const path = require('path');
+const {updateAloesSensors} = require('aloes-handlers');
+const {aloesLightEncoder} = require('../lib/encoder');
+const {aloesLightPatternDetector} = require('../lib/detector');
 
 //  const aloesLightPattern = "+prefixedDevEui/+method/+omaObjectId/+sensorId/+omaResourceId";
 

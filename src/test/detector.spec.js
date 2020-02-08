@@ -1,7 +1,5 @@
-require('@babel/register');
-
-import {assert} from 'chai';
-import {aloesLightPatternDetector} from '../lib/detector';
+const {assert} = require('chai');
+const {aloesLightPatternDetector} = require('../lib/detector');
 
 describe('aloesLightPatternDetector - test 1', () => {
   const packet = {topic: 'Aloes123-out/0/3349/0/3/5910', payload: 'test'};

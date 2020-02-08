@@ -1,6 +1,6 @@
-import mqttPattern from 'mqtt-pattern';
-import logger from 'aloes-logger';
-import protocolRef from './common';
+const mqttPattern = require('mqtt-pattern');
+const logger = require('aloes-logger');
+const protocolRef = require('./common');
 
 /**
  * Convert incoming Aloes Client data to AloesLight protocol
@@ -41,7 +41,7 @@ const aloesLightEncoder = (instance, protocol) => {
     throw new Error('Wrong protocol input');
   } catch (error) {
     logger(4, 'aloes-light-handlers', 'encoder:err', error);
-    throw error;
+    return null;
   }
 };
 

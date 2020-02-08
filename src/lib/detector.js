@@ -1,7 +1,7 @@
-import mqttPattern from 'mqtt-pattern';
-import {omaObjects} from 'oma-json';
-import logger from 'aloes-logger';
-import protocolRef from './common';
+const mqttPattern = require('mqtt-pattern');
+const {omaObjects} = require('oma-json');
+const logger = require('aloes-logger');
+const protocolRef = require('./common');
 
 /**
  * Check incoming MQTT packet against AloesLight API
@@ -9,31 +9,18 @@ import protocolRef from './common';
  * @param {object} packet - The MQTT packet.
  * @returns {object} found pattern.name and pattern.params
  */
-const aloesLightPatternDetector = packet => {
+const aloesLightPatternDetector = (packet) => {
   try {
     const pattern = {name: 'empty', params: {}};
     if (mqttPattern.matches(protocolRef.pattern, packet.topic)) {
-      logger(
-        4,
-        'aloes-light-handlers',
-        'patternDetector:res',
-        'reading API ...',
-      );
-      const aloesLightProtocol = mqttPattern.exec(
-        protocolRef.pattern,
-        packet.topic,
-      );
-      logger(
-        3,
-        'aloes-light-handlers',
-        'patternDetector:res',
-        aloesLightProtocol,
-      );
+      logger(4, 'aloes-light-handlers', 'patternDetector:res', 'reading API ...');
+      const aloesLightProtocol = mqttPattern.exec(protocolRef.pattern, packet.topic);
+      logger(3, 'aloes-light-handlers', 'patternDetector:res', aloesLightProtocol);
       const methodExists = protocolRef.validators.methods.some(
-        meth => meth === Number(aloesLightProtocol.method),
+        (meth) => meth === Number(aloesLightProtocol.method),
       );
       const omaObjectIdExists = omaObjects.some(
-        object => object.value === Number(aloesLightProtocol.omaObjectId),
+        (object) => object.value === Number(aloesLightProtocol.omaObjectId),
       );
       logger(4, 'aloes-light-handlers', 'patternDetector:res', {
         methodExists,
@@ -49,7 +36,7 @@ const aloesLightPatternDetector = packet => {
     return pattern;
   } catch (error) {
     logger(2, 'aloes-light-handlers', 'patternDetector:err', error);
-    throw error;
+    return null;
   }
 };
 
