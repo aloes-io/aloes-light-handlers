@@ -7,7 +7,7 @@ const protocolRef = require('./common');
  * Check incoming MQTT packet against AloesLight API
  * @method aloesLightPatternDetector
  * @param {object} packet - The MQTT packet.
- * @returns {object} found pattern.name and pattern.params
+ * @returns {object | null} pattern
  */
 const aloesLightPatternDetector = (packet) => {
   try {

@@ -7,7 +7,7 @@ const protocolRef = require('./common');
  * Find corresponding [OMA Object]{@link /aloeslight/#omaobjects} following a AloesLight presentation message
  * @method aloesLightToOmaObject
  * @param {object} msg - Decoded MQTT packet.
- * @returns {object} composed instance
+ * @returns {object | null} composed instance
  */
 const aloesLightToOmaObject = (msg) => {
   try {
@@ -38,7 +38,7 @@ const aloesLightToOmaObject = (msg) => {
  * Find corresponding [OMA Resources]{@link /aloeslight/#omaresources} to incoming AloesLight datas
  * @method aloesLightToOmaResources
  * @param {object} msg - Decoded MQTT packet.
- * @returns {object} composed instance
+ * @returns {object | null} composed instance
  */
 const aloesLightToOmaResources = (msg) => {
   try {
@@ -70,7 +70,7 @@ const aloesLightToOmaResources = (msg) => {
  * @method aloesLightDecoder
  * @param {object} packet - Incoming MQTT packet.
  * @param {object} protocol - Protocol paramters ( coming from patternDetector ).
- * @returns {object} composed instance
+ * @returns {object | null} composed instance
  */
 const aloesLightDecoder = (packet, protocol) => {
   try {
