@@ -39,17 +39,16 @@
     "oma-json": "^1.1.3"
   },
   "devDependencies": {
-    "aloes-handlers": "^1.2.13",
     "chai": "^4.2.0",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "identity-obj-proxy": "^3.0.0",
-    "jsdoc-to-markdown": "^5.0.3",
+    "jsdoc-to-markdown": "^6.0.1",
     "light-server": "^2.6.4",
-    "mocha": "^7.1.2",
+    "mocha": "^8.1.2",
     "prettier": "^2.0.5",
-    "vuepress": "^1.4.1"
+    "vuepress": "^1.5.4"
   },
   "prettier": {
     "bracketSpacing": false,

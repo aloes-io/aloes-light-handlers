@@ -1,7 +1,4 @@
 const {assert} = require('chai');
-const fs = require('fs');
-const path = require('path');
-const {updateAloesSensors} = require('aloes-handlers');
 const {aloesLightEncoder} = require('../lib/encoder');
 const {aloesLightPatternDetector} = require('../lib/detector');
 
@@ -226,12 +223,6 @@ describe('aloesLightEncoder - test 4', () => {
     },
   };
   const encoded = aloesLightEncoder(options.data, options);
-  let updatedSensor;
-  // fs.readFile(`${path.resolve('.')}/src/assets/feuer.png`, (err, data) => {
-  //   if (err) throw err;
-  //   updatedSensor = updateAloesSensors(options.data, 5910, data);
-  //   //  console.log('Aloes Light - test4 - updateSensor', updatedSensor);
-  // });
 
   it('pattern should exist', () => {
     assert.typeOf(pattern, 'object');
