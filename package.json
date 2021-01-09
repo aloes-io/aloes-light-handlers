@@ -1,6 +1,6 @@
 {
   "name": "aloes-light-handlers",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Encode / decode MQTT stream from Devices using Aloes Light protocol",
   "main": "./src/index.js",
   "scripts": {
