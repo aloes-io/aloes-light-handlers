@@ -18,10 +18,12 @@
     "prePublish": "npm run lint; npm run test"
   },
   "files": [
-    "src/*",
+    "src/lib/*",
+    "src/index.js",
     "package.json",
     "README.md"
   ],
+  "types": "types/index.d.ts",
   "author": "Edouard Maleix <ed@getlarge.eu> (https://getlarge.eu)",
   "keywords": [
     "IoT",
@@ -36,7 +38,7 @@
   "dependencies": {
     "aloes-logger": "^1.0.5",
     "mqtt-pattern": "^1.2.0",
-    "oma-json": "^1.1.3"
+    "oma-json": "^1.1.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -91,6 +93,5 @@
   "repository": {
     "type": "git",
     "url": "https://framagit.org/aloes/aloes-light-handlers"
-  },
-  "types": "types/index.d.ts"
+  }
 }
